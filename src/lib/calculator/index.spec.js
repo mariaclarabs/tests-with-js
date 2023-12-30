@@ -1,4 +1,4 @@
-const { sum } = require("./calculator")
+const { sum } = require(".")
 
 describe('given sum method', () => {
   it('should sum numbers and return the correct result', () => {
