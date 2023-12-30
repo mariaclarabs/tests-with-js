@@ -1,10 +1,11 @@
 {
-  "name": "tests-with-js",
+  "name": "tests-with-js::calculator",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "keywords": [],
   "author": "mariaclarabs",
