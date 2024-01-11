@@ -1,13 +1,6 @@
-const queryString = (objectData) => {
-  const stringDataList = []
-
-  for (const label in objectData) {
-    stringDataList.push(`${label}=${objectData[label]}`)
-  }
-
-  const queryString = stringDataList.join('&')
-
-  return queryString
-}
+const queryString = (objectData) =>
+  Object.entries(objectData)
+    .map(([label, value]) => `${label}=${value}`)
+    .join('&')
 
 module.exports = { queryString }
