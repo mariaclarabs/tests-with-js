@@ -1,10 +1,6 @@
-const isAnObject = (value) => {
-  return typeof value === 'object'
-}
+const isAnObject = (value) => typeof value === 'object'
 
-const isNotAnArray = (value) => {
-  return !Array.isArray(value)
-}
+const isNotAnArray = (value) => !Array.isArray(value)
 
 const parseKeyValueToString = ([label, value]) => {
   if (isAnObject(value) && isNotAnArray(value)) {
@@ -14,8 +10,14 @@ const parseKeyValueToString = ([label, value]) => {
   return `${label}=${value}`
 }
 
-const queryString = (objectData) => {
+const parseObjectToQueryString = (objectData) => {
   return Object.entries(objectData).map(parseKeyValueToString).join('&')
 }
 
-module.exports = { queryString }
+const parseQueryStringToObject = (queryString) => {
+  return Object.fromEntries(
+    queryString.split('&').map((item) => item.split('='))
+  )
+}
+
+module.exports = { parseObjectToQueryString, parseQueryStringToObject }

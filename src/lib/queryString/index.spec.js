@@ -1,6 +1,6 @@
-const { queryString } = require('.')
+const { parseObjectToQueryString, parseQueryStringToObject } = require('.')
 
-describe('', () => {
+describe('given object to query string conversion', () => {
   it('should create a valid query string when an object is provided', () => {
     const userData = {
       name: 'Maria',
@@ -9,7 +9,7 @@ describe('', () => {
 
     const expectedQueryString = 'name=Maria&role=Developer'
 
-    expect(queryString(userData)).toBe(expectedQueryString)
+    expect(parseObjectToQueryString(userData)).toBe(expectedQueryString)
   })
 
   it('should create a valid query string when an array is passed as value', () => {
@@ -22,7 +22,7 @@ describe('', () => {
     const expectedQueryString =
       'name=Maria&role=Developer&skills=HTML,CSS,JavaScript'
 
-    expect(queryString(userData)).toBe(expectedQueryString)
+    expect(parseObjectToQueryString(userData)).toBe(expectedQueryString)
   })
 
   it('should throw an error when an object is passed as value', () => {
@@ -37,7 +37,20 @@ describe('', () => {
     }
 
     expect(() => {
-      queryString(userData)
+      parseObjectToQueryString(userData)
     }).toThrow()
+  })
+})
+
+describe('given query string to object conversion', () => {
+  it('should convert a query string to an object', () => {
+    const queryString = 'name=Maria&role=Developer'
+
+    const expectedObject = {
+      name: 'Maria',
+      role: 'Developer',
+    }
+
+    expect(parseQueryStringToObject(queryString)).toEqual(expectedObject)
   })
 })
