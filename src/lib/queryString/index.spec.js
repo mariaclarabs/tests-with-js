@@ -53,4 +53,26 @@ describe('given query string to object conversion', () => {
 
     expect(parseQueryStringToObject(queryString)).toEqual(expectedObject)
   })
+
+  it('should convert a query string of a single key-value object', () => {
+    const queryString = 'name=Maria'
+
+    const expectedObject = {
+      name: 'Maria',
+    }
+
+    expect(parseQueryStringToObject(queryString)).toEqual(expectedObject)
+  })
+
+  it('should convert a query string to an object taking care of comma separated values', () => {
+    const queryString = 'name=Maria&role=Developer&skills=HTML,CSS,JavaScript'
+
+    const expectedObject = {
+      name: 'Maria',
+      role: 'Developer',
+      skills: ['HTML', 'CSS', 'JavaScript'],
+    }
+
+    expect(parseQueryStringToObject(queryString)).toEqual(expectedObject)
+  })
 })

@@ -16,7 +16,16 @@ const parseObjectToQueryString = (objectData) => {
 
 const parseQueryStringToObject = (queryString) => {
   return Object.fromEntries(
-    queryString.split('&').map((item) => item.split('='))
+    queryString.split('&').map((item) => {
+      const [key, value] = item.split('=')
+
+      if (value.includes(',')) {
+        const valueList = value.split(',')
+        return [key, valueList]
+      }
+
+      return [key, value]
+    })
   )
 }
 
